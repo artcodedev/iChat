@@ -1,12 +1,12 @@
 # ####################################################
 # ichat_server
 
-go to file
+Go to file
 ```bash
 cd ichat_server
 ```
 
-install dependencies
+Install dependencies
 ```bash
 bun install
 ```
@@ -19,12 +19,12 @@ bun index.ts
 # ####################################################
 # ichat_client
 
-go to file
+Go to file
 ```bash
 cd ichat_client
 ```
 
-install dependencies
+Install dependencies
 ```bash
 bun install
 ```
@@ -47,6 +47,8 @@ bun run start
 # ####################################################
 # docker start 
 
+
+start docker
 ```bash
 sudo docker compose up --build -d
 ```
