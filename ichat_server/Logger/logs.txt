@@ -1,0 +1,110 @@
+[+] 1/29/2026, 3:25:25 PM 🦊 Server is running at http://localhost:3001
+[+] 1/29/2026, 3:26:33 PM 🦊 Server is running at http://localhost:3001
+[+] 1/29/2026, 3:29:52 PM 🦊 Server is running at http://localhost:3001
+[+] 1/29/2026, 3:32:50 PM 🦊 Server is running at http://localhost:3001
+[+] 1/29/2026, 3:37:35 PM 🦊 Server is running at http://localhost:3001
+[+] 1/29/2026, 3:37:39 PM NOT_FOUND | NOT_FOUND
+[+] 1/29/2026, 3:37:39 PM NOT_FOUND | NOT_FOUND
+[+] 1/29/2026, 3:37:50 PM NOT_FOUND | NOT_FOUND
+[+] 1/29/2026, 3:38:01 PM 🦊 Server is running at http://localhost:3001
+[+] 1/29/2026, 3:38:02 PM NOT_FOUND | NOT_FOUND
+[+] 1/29/2026, 3:38:58 PM 🦊 Server is running at http://localhost:3001
+[+] 1/29/2026, 3:39:00 PM NOT_FOUND | NOT_FOUND
+[+] 1/29/2026, 3:52:50 PM 🦊 Server is running at http://localhost:3001
+[+] 1/29/2026, 3:52:59 PM NOT_FOUND | NOT_FOUND
+[+] 1/29/2026, 3:55:42 PM VALIDATION | {
+  "type": "validation",
+  "on": "body",
+  "property": "/prompt",
+  "message": "Expected string length greater or equal to 1",
+  "summary": "Expected string length greater or equal to 1",
+  "expected": {
+    "prompt": " "
+  },
+  "found": {
+    "prompt": ""
+  },
+  "errors": [
+    {
+      "summary": "Expected string length greater or equal to 1",
+      "type": 52,
+      "schema": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "path": "/prompt",
+      "value": "",
+      "message": "Expected string length greater or equal to 1",
+      "errors": []
+    }
+  ]
+}
+[+] 1/29/2026, 3:56:34 PM 🦊 Server is running at http://localhost:3001
+[+] 1/29/2026, 3:56:36 PM VALIDATION | {
+  "type": "validation",
+  "on": "body",
+  "property": "/prompt",
+  "message": "Expected string length greater or equal to 1",
+  "summary": "Expected string length greater or equal to 1",
+  "expected": {
+    "prompt": " "
+  },
+  "found": {
+    "prompt": ""
+  },
+  "errors": [
+    {
+      "summary": "Expected string length greater or equal to 1",
+      "type": 52,
+      "schema": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "path": "/prompt",
+      "value": "",
+      "message": "Expected string length greater or equal to 1",
+      "errors": []
+    }
+  ]
+}
+[+] 1/29/2026, 3:57:02 PM VALIDATION | {
+  "type": "validation",
+  "on": "body",
+  "property": "/prompt",
+  "message": "Expected string length greater or equal to 1",
+  "summary": "Expected string length greater or equal to 1",
+  "expected": {
+    "prompt": " "
+  },
+  "found": {
+    "prompt": ""
+  },
+  "errors": [
+    {
+      "summary": "Expected string length greater or equal to 1",
+      "type": 52,
+      "schema": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "path": "/prompt",
+      "value": "",
+      "message": "Expected string length greater or equal to 1",
+      "errors": []
+    }
+  ]
+}
+[+] 1/29/2026, 4:15:37 PM 🦊 Server is running at http://localhost:3001
+[+] 1/29/2026, 4:16:58 PM 🦊 Server is running at http://localhost:3001
+[+] 1/29/2026, 4:23:14 PM 🦊 Server is running at http://localhost:3001
+[+] 1/29/2026, 4:27:39 PM 🦊 Server is running at http://localhost:3001
+[+] 1/29/2026, 5:53:37 PM 🦊 Server is running at http://localhost:3001
+[+] 1/29/2026, 6:11:06 PM 🦊 Server is running at http://localhost:3001
+[+] 1/29/2026, 6:13:11 PM 🦊 Server is running at http://localhost:3001
+[+] 1/29/2026, 6:13:29 PM 🦊 Server is running at http://localhost:3001
+[+] 1/29/2026, 6:14:20 PM 🦊 Server is running at http://localhost:3001
+[+] 1/29/2026, 6:14:40 PM 🦊 Server is running at http://localhost:3001
+[+] 1/29/2026, 7:58:25 PM 🦊 Server is running at http://localhost:3001
+[+] 1/29/2026, 8:04:58 PM 🦊 Server is running at http://localhost:3001
+[+] 1/29/2026, 8:32:29 PM 🦊 Server is running at http://localhost:3001
+[+] 1/30/2026, 11:44:39 AM 🦊 Server is running at http://localhost:3001

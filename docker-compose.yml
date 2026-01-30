@@ -1,0 +1,34 @@
+services:
+  ichat_api:
+    build:
+      context: ./ichat_server
+      dockerfile: Dockerfile
+    container_name: ichat_server
+    restart: always
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+    networks:
+      - app-network
+
+  ichat_app:
+    build:
+      context: ./ichat_client
+      dockerfile: Dockerfile
+    container_name: ichat_client
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=http://api:3001
+    depends_on:
+      - api
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
