@@ -1,5 +1,6 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+
+import { useState, useRef, useEffect, useMemo, useCallback } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { motion, AnimatePresence } from "framer-motion";
 import ChatMessage from "./Components/ChatMessage.component";
@@ -9,13 +10,20 @@ import ThinkMessage from "./Components/ThinkMessage.component";
 
 const ip: string = "http://localhost:3001";
 
+interface Message {
+  id: number;
+  text: string;
+  sender: 'user' | 'bot';
+  isNew?: boolean;
+}
+
 export default function VoiceChat() {
-  const [messages, setMessages] = useState<any[]>([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [isThinking, setIsThinking] = useState(false);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const isLanding = messages.length === 0;
+  const isLanding = useMemo(() => messages.length === 0, [messages.length]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -25,7 +33,7 @@ export default function VoiceChat() {
     scrollToBottom();
   }, [messages, isThinking]);
 
-  const showErrorMessage = (message: string): void => {
+  const showErrorMessage = useCallback((message: string): void => {
     toast.error(message, {
       style: {
         borderRadius: "10px",
@@ -35,15 +43,16 @@ export default function VoiceChat() {
       },
       duration: 4000,
     });
-  };
+  }, []);
 
-  const handleNewMessage = async (text: string) => {
+  const handleNewMessage = useCallback(async (text: string) => {
     if (!text.trim()) return;
 
     setMessages((prev) => [
       ...prev,
       { id: Date.now(), text, sender: "user" as const },
     ]);
+
     setIsThinking(true);
 
     try {
@@ -72,7 +81,7 @@ export default function VoiceChat() {
     } finally {
       setIsThinking(false);
     }
-  };
+  }, [showErrorMessage]); 
 
   return (
     <div className="h-screen bg-[#0a2661] text-white flex flex-col overflow-hidden">
