@@ -8,6 +8,8 @@ import ChatInput from "./Components/ChatInput.component";
 import MainHeader from "./Components/MainHeader.component";
 import ThinkMessage from "./Components/ThinkMessage.component";
 
+
+// поменять на проде или на тот порт пр разработке
 const ip: string = "http://localhost:3001";
 
 interface Message {
