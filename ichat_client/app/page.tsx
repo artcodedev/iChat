@@ -19,7 +19,7 @@ interface Message {
 
 export default function VoiceChat() {
   const [messages, setMessages] = useState<Message[]>([]);
-  const [isThinking, setIsThinking] = useState(false);
+  const [isThinking, setIsThinking] = useState<boolean>(false);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
