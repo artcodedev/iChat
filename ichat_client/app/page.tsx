@@ -17,13 +17,22 @@ interface Message {
   isNew?: boolean;
 }
 
+interface AnswersResponse {
+  status: number;
+  message?: string;
+  data?: {
+    answer: string;
+    [key: string]: any; 
+  };
+}
+
 export default function VoiceChat() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isThinking, setIsThinking] = useState<boolean>(false);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const isLanding = useMemo(() => messages.length === 0, [messages.length]);
+  const isLanding: boolean = useMemo(() => messages.length === 0, [messages.length]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -62,18 +71,23 @@ export default function VoiceChat() {
         body: JSON.stringify({ prompt: text })
       });
 
-      const data = await response.json();
+      const data: AnswersResponse = await response.json();
 
-      if (data.status === 200) {
+      const botAnswer: string | undefined = data.data?.answer;
+
+      if (data.status === 200 && botAnswer) {
 
         setMessages(prev => [...prev, {
           id: Date.now() + 1,
-          text: data.data.answer,
+          text: botAnswer,
           sender: 'bot' as const,
           isNew: true
         }]);
 
       } else {
+        // Как вариант ответа если добавить проверку на сервере что именно ответи OpenRouter что бы не отвечать длинным сообщением
+        // showErrorMessage(data.message || 'Error from server');
+
         showErrorMessage('Error from server');
       }
     } catch (e: unknown) {
