@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useMemo, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { motion, AnimatePresence } from "framer-motion";
 import ChatMessage from "./Components/ChatMessage.component";
@@ -9,11 +9,8 @@ import MainHeader from "./Components/MainHeader.component";
 import ThinkMessage from "./Components/ThinkMessage.component";
 
 
-// поменять на проде или на тот порт пр разработке
-const ip: string = "http://localhost:3001";
-
 interface Message {
-  id: number;
+  id: string;
   text: string;
   sender: 'user' | 'bot';
   isNew?: boolean;
@@ -24,7 +21,7 @@ interface AnswersResponse {
   message?: string;
   data?: {
     answer: string;
-    [key: string]: any; 
+    [key: string]: any;
   };
 }
 
@@ -34,7 +31,7 @@ export default function VoiceChat() {
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const isLanding: boolean = useMemo(() => messages.length === 0, [messages.length]);
+  const isLanding: boolean = messages.length === 0;
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -61,17 +58,22 @@ export default function VoiceChat() {
 
     setMessages((prev) => [
       ...prev,
-      { id: Date.now(), text, sender: "user" as const },
+      { id: crypto.randomUUID(), text, sender: "user" as const },
     ]);
 
     setIsThinking(true);
 
     try {
-      const response = await fetch(`${ip}/api/chat`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_IP}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt: text })
       });
+
+      if (!response.ok) {
+        showErrorMessage('Error from server');
+        throw new Error('Server error');
+      }
 
       const data: AnswersResponse = await response.json();
 
@@ -80,7 +82,7 @@ export default function VoiceChat() {
       if (data.status === 200 && botAnswer) {
 
         setMessages(prev => [...prev, {
-          id: Date.now() + 1,
+          id: crypto.randomUUID(),
           text: botAnswer,
           sender: 'bot' as const,
           isNew: true
@@ -93,11 +95,12 @@ export default function VoiceChat() {
         showErrorMessage('Error from server');
       }
     } catch (e: unknown) {
+      console.error(e);
       showErrorMessage('Failed to connect to the server.');
     } finally {
       setIsThinking(false);
     }
-  }, [showErrorMessage]); 
+  }, [showErrorMessage]);
 
   return (
     <div className="h-screen bg-[#0a2661] text-white flex flex-col overflow-hidden">

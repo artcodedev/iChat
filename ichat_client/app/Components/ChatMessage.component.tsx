@@ -1,4 +1,5 @@
 import { User, Bot } from 'lucide-react';
+import { memo } from "react";
 import { TypewriterMessage } from './TypewriterMessage.component';
 
 
@@ -8,7 +9,7 @@ interface ChatMessageProps {
   isNew?: boolean;
 }
 
-const ChatMessage = ({ text, sender, isNew }: ChatMessageProps) => (
+const ChatMessage = memo(({ text, sender, isNew }: ChatMessageProps) => (
   <div className={`flex ${sender === 'user' ? 'justify-end' : 'justify-start'}`}>
     <div className={`flex items-end gap-2 max-w-[80%] ${sender === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
       <div className={`p-2 rounded-full ${sender === 'user' ? 'bg-blue-500' : 'bg-gray-600'}`}>
@@ -25,6 +26,6 @@ const ChatMessage = ({ text, sender, isNew }: ChatMessageProps) => (
       </div>
     </div>
   </div>
-);
+));
 
 export default ChatMessage;

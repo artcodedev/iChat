@@ -1,5 +1,5 @@
 import { Mic, Square, ChevronRight, Loader2 } from "lucide-react";
-import { useState } from "react";
+import { useState, memo } from "react";
 import { useSpeechRecognition } from "../Hooks/useSpeechRecognition";
 import { MicErrorModal } from "./MicErrorModal.component";
 
@@ -8,8 +8,8 @@ interface ChatInputProps {
   onSendMessage: (text: string) => void;
 }
 
-const ChatInput = ({ disabled, onSendMessage }: ChatInputProps) => {
-  const [text, setText] = useState("");
+const ChatInput = memo(({ disabled, onSendMessage }: ChatInputProps) => {
+  const [text, setText] = useState<string>("");
   const {
     isRecording,
     startRecording,
@@ -23,10 +23,11 @@ const ChatInput = ({ disabled, onSendMessage }: ChatInputProps) => {
       onSendMessage(text);
       setText("");
     }
-  };
+  }
 
   return (
     <div className="w-full max-w-2xl relative mb-2 md:mb-10">
+
       <MicErrorModal
         isOpen={errorSpeech === "microphone-denied"}
         onClose={clearErrorSpeech}
@@ -69,6 +70,6 @@ const ChatInput = ({ disabled, onSendMessage }: ChatInputProps) => {
       </div>
     </div>
   );
-};
+});
 
 export default ChatInput;
